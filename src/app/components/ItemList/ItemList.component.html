@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Lista de Itens</h2>
+  <button type="button" class="btn btn-primary adicionar" (click)="abrirModal()">
+    Adicionar
+  </button>
+  <ol>
+    <li *ngFor="let item of items">
+      <div class="col-sm-6 col-md-6">
+        {{ item.nome }}
+      </div>
+      <div class="col-sm-6 col-md-6 botoes">
+        <button type="button" class="btn btn-primary" (click)="editar(item)">
+          <i class="bi-pencil"></i>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deletar(item)">
+          <i class="bi-trash"></i>
+        </button>
+      </div>
+    </li>
+  </ol>
+
+</div>
+
+<p-dialog [header]="titulo" [(visible)]="exibirModal" [style]="{width: '60vw'}">
+  <form (ngSubmit)="adicionarItem()">
+    <div>
+      <h3 for="novoItem">{{ tituloLabel }}</h3>
+      <input class="form-control" id="novoItem" [(ngModel)]="novoItem" name="novoItem" required>
+      <div *ngIf="tituloValidacao">
+        <p class="validacao">
+          {{ tituloValidacao }}
+        </p>
+      </div>
+      <button class="btn btn-primary" type="submit">{{ tituloBotao }}</button>
+    </div>
+  </form>
+</p-dialog>
